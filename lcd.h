@@ -106,7 +106,7 @@ void lcd_set_pos2(position const *);			//as higher but uses ptr for structure po
 void lcd_port_disp(char port_name);	//where argument can be 'A' 'B' 'C' 'D'
 void lcd_pin_disp(char pin_name);	//not tested!!
 
-/* treść licencji:
+/* licence:
  * Copyright (c) 2014, Dawid Pilarski
 All rights reserved.
 
