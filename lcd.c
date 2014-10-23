@@ -228,7 +228,7 @@ void lcd_char_disp(char unsigned sign)
 	lcd_send_data((uint8_t)sign);
 }
 
-void lcd_str_disp(char string[])
+void lcd_str_disp(const char string[])
 {
 	while(*string != '\0')
 	{
@@ -237,7 +237,7 @@ void lcd_str_disp(char string[])
 	}
 }
 
-void lcd_str_disp_delay(char string[])
+void lcd_str_disp_delay(const char string[])
 {
 	while(*string != '\0')
 	{
@@ -259,14 +259,16 @@ void lcd_int_disp(int16_t number)
 		number -= 2*number;
 	}
 
+	_Bool previous_displayed=0;
 	//10000 means that highest displayed number has 5 digits + sign
 	for(divider = 10000;divider >0;divider/=10)
 	{
 		tmp = number/divider;
 
-		if(tmp == 0)
+		if(tmp == 0 && previous_displayed==0)
 			continue;
 
+		previous_displayed=1;
 		lcd_send_data('0'+tmp);
 		number -= tmp*divider;
 	}
@@ -405,3 +407,5 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
+
+
